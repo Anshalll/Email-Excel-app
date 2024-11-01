@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Fetchmaildata } from "./Asyncthunk";
 
 let initialState = {
-    data: [],
+    data: {},
     loading: true,
     error: null
 }

@@ -60,11 +60,11 @@ def main():
                 # Build the final values only if required fields are present
                 if date and sender and subject and messageid:
                     finalvals = {
-                        'date': date,
+                        'Date': date,
                         'From': sender,
-                        'Subject': subject,
                         'Hyperlink': hyperlink,
-                        'messageid': messageid
+                        'Subject': subject,
+                        'Messageid': messageid
                     }
                     data_arr.append(finalvals)
 

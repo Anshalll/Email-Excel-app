@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 
-#unsaved{
+.maintext{
     font-family: "Josefin Sans", sans-serif;
 
 }

@@ -10,43 +10,46 @@ export default function Sidebar1() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+
+
     if (loading) {
-
       dispatch(Fetchmaildata('/'));
-
     } else if (error) {
-
       console.error(error);
-
     }
+
   }, [dispatch, loading, error]);
 
+
+
+
   useEffect(() => {
- 
-        dispatch(setSelectedmailsdata(SelectedMails))
-    
-  } , [SelectedMails , dispatch])
+
+    dispatch(setSelectedmailsdata(SelectedMails))
+
+  }, [SelectedMails, dispatch])
 
   const HandleSelected = (e, id) => {
+
     if (e.target.checked) {
+
+      const findings = data?.data?.filter((item) => item.Messageid === id);
       
-      const findings = data?.data?.filter((item) => item.messageid === id);
-      
+
       if (findings) {
-  
-        setSelectedMails((prev) => [...prev , findings[0]])
-     
-       
+
+        setSelectedMails((prev) => [...prev, findings[0]])
+
+      }
+
     }
-  
-  }
-  else {
+    else {
 
-    let findings = SelectedMails.filter((e) => e.messageid !== id)
-    setSelectedMails(findings)
+      let findings = SelectedMails.filter((e) => e.Messageid !== id)
+      setSelectedMails(findings)
 
+    }
   }
-}
 
   return (
     <div className="h-[100%] w-[400px] shadow-lg p-[20px]">
@@ -61,11 +64,11 @@ export default function Sidebar1() {
           {data?.data?.map((value, index) => (
             <p
               id="unsaved"
-              className="flex w-full bg-yellow-500 p-[7px] items-center rounded-lg text-black shadow-lg gap-[20px]"
+              className="maintext flex w-full bg-yellow-500 p-[7px] items-center rounded-lg text-black shadow-lg gap-[20px]"
               key={index}
             >
               <input
-                onChange={(e) => HandleSelected(e, value.messageid)}
+                onChange={(e) => HandleSelected(e, value.Messageid)}
                 className="rounded-lg bg-gray-900 w-[15px] h-[15px]"
                 type="checkbox"
                 name="selected-message"
