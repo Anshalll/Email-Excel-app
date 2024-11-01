@@ -17,4 +17,10 @@ def Index():
 
 
 
+@serverapp.route('/uploadexcel' , methods=['POST'])
+def Uploadtoexcel():
+    if(request.method == "POST"): 
+        print(request.data)    
+        return jsonify({ "msg": "Data updated!" })
+
 serverapp.run(debug=True)
