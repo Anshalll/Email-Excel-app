@@ -27,7 +27,7 @@ export default function Sidebar2() {
       {loading ? "Loading..." : <div className='scroller flex flex-col h-full overflow-y-auto gap-[20px]'>
         <div className="flex items-center justify-between">
             <p>Saved data</p>
-            <p>Selected {Data.length}</p>
+            <p>{Data.length}</p>
           </div>
 
           {Data?.map((value, index) => (

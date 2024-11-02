@@ -8,7 +8,8 @@ from googleapiclient.errors import HttpError
 # Define the scope
 SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
 
-def main():
+def main(limit):
+  
     creds = None
 
     # Load existing credentials
@@ -32,21 +33,21 @@ def main():
     try:
         data_arr = []
 
-        # Call the Gmail API
+       
         service = build("gmail", "v1", credentials=creds)
         results = service.users().messages().list(userId="me", labelIds=['INBOX'], includeSpamTrash=False).execute()
-
+      
         if 'messages' in results and results['messages']:
-            for data in results['messages'][:20]:
+            for data in results['messages'][0:int(limit)]:
                 outputresults = service.users().messages().get(userId="me", id=data['id']).execute()
-
+               
                 date = None
                 messageid = None
                 sender = None
                 subject = None
                 hyperlink = f"https://mail.google.com/mail/u/0/#inbox/{data['id']}"
 
-                # Extract headers
+            
                 for vals in outputresults['payload']['headers']:
                     if vals['name'] == "Date":
                         date = vals['value']
@@ -57,7 +58,7 @@ def main():
                     if vals['name'] == "Subject":
                         subject = vals['value']
                 
-                # Build the final values only if required fields are present
+              
                 if date and sender and subject and messageid:
                     finalvals = {
                         'Date': date,
@@ -68,6 +69,7 @@ def main():
                     }
                     data_arr.append(finalvals)
 
+  
         return data_arr
 
     except HttpError as error:

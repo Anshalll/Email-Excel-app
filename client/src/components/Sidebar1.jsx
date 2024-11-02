@@ -3,22 +3,23 @@ import { useDispatch } from 'react-redux';
 import { Fetchmaildata } from '../redux/fetchmails/Asyncthunk';
 import { useMaildata } from '../hooks/useMaildata';
 import { setSelectedmailsdata } from '../redux/SelectedMaildata/slice';
-
+import {useMailsLimit} from '../hooks/useMailsLimit'
 export default function Sidebar1() {
   const [SelectedMails, setSelectedMails] = useState([]);
   const { data, loading, error } = useMaildata();
+  const {limit} = useMailsLimit()
   const dispatch = useDispatch();
 
   useEffect(() => {
 
 
     if (loading) {
-      dispatch(Fetchmaildata('/'));
+      dispatch(Fetchmaildata({ page: "/" , limit:  limit }));
     } else if (error) {
       console.error(error);
     }
 
-  }, [dispatch, loading, error]);
+  }, [dispatch, loading, error , limit]);
 
 
 
@@ -57,8 +58,9 @@ export default function Sidebar1() {
         'Loading'
       ) : (
         <div className="scroller flex flex-col h-full overflow-y-auto gap-[20px]">
+          <button onClick={() => dispatch(Fetchmaildata({ page: "/" , limit:  limit })) } className='bg-[chartreuse] p-[7px] rounded-lg text-black'>Refetch</button>
           <div className="flex items-center justify-between">
-            <p>Unsaved data</p>
+            <p>Unsaved data {data?.data?.length}</p>
             <p>Selected {SelectedMails.length}</p>
           </div>
           {data?.data?.map((value, index) => (
@@ -68,8 +70,9 @@ export default function Sidebar1() {
               key={index}
             >
               <input
+                
                 onChange={(e) => HandleSelected(e, value.Messageid)}
-                className="rounded-lg bg-gray-900 w-[15px] h-[15px]"
+                className="inputcheckbox rounded-lg bg-gray-900 w-[15px] h-[15px]"
                 type="checkbox"
                 name="selected-message"
                 id={value.messageid}
