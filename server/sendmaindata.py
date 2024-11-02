@@ -1,8 +1,11 @@
 import app
 import uploadtoexcel
 import json
+
 def funcsendmaindata(limit):
-        
+    
+    try:
+
         data = app.main(limit)
         load_exceldata = None
         unmatched = []
@@ -23,4 +26,7 @@ def funcsendmaindata(limit):
 
             return{'data': unmatched, 'exceldata': exceldata}
         else:
-            return {'data': data, 'exceldata': []}
+            return {'data': data, 'exceldata': []}  
+        
+    except Exception as e:
+        print(e)

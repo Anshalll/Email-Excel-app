@@ -9,10 +9,13 @@ serverapp = Flask(__name__)
 CORS(serverapp)
 @serverapp.route('/', methods=['POST'])
 def Index():
-    if request.method == "POST":
-        limit = json.loads(request.data)
-        data = sendmaindata.funcsendmaindata(limit)
-        return jsonify(data)
+    try: 
+        if request.method == "POST":
+            limit = json.loads(request.data)
+            data = sendmaindata.funcsendmaindata(limit)
+            return jsonify(data)
+    except Exception as e:
+        return jsonify({ "error": e })
        
 
 
