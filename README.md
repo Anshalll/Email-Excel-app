@@ -41,7 +41,7 @@ Install dependencies
   pip install -r requirements.txt
 ```
 
-Before you start the server get the gmail api credentials, once you do that run ,  also set the test user with your email id that will be used in this project.
+Before you start the server get the gmail api credentials. Also set the test user with your email id that will be used in this project, Once you do that run the server.
 
 ```bash
   python app.py
