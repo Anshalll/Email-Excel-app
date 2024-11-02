@@ -4,6 +4,9 @@ import SelectedMails from './SelectedMaildata/slice'
 import { Formmutations } from './apis/Api'
 import { FormmutationsReducer } from './apis/Api'
 import MailsLimit from './mailslimit/slice'
+import Activemaildata  from './activemaildata/slice'
+import Datasaved from './datasaved/slice'
+
 
 export const store = configureStore({
     reducer : {
@@ -11,7 +14,8 @@ export const store = configureStore({
         selectedMails: SelectedMails,
         [Formmutations.reducerPath] : FormmutationsReducer,
         MailsLimit: MailsLimit,
-        
+        Activemaildata: Activemaildata,
+        Datasaved: Datasaved
     },
 
     middleware: (getdefaultmiddleware) => 

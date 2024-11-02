@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Russo+One&family=Tiny5&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,4 +12,15 @@
 
 .scroller::-webkit-scrollbar{
     display: none;
+}
+
+.mainTitle{
+
+    letter-spacing: 7px;
+    background-color: black;
+    color: chartreuse;
+    padding: 10px;
+    font-size: larger;
+    font-family: "Russo One", sans-serif;
+
 }
