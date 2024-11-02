@@ -19,7 +19,7 @@ This project provides a straightforward solution for saving selected email data 
 
 ## 📂 Project Structure
 * Frontend: Interface to view, select, and manage email data.
-* Backend: Handles email fetching, data processing, and Excel file generation.
+* Server: Handles email fetching, data processing, and Excel file generation.
 
 ## 🚀 Getting Started
 
